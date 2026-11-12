@@ -36,6 +36,9 @@ Também inclui a narrativa da investigação e correção dos defeitos. A identi
 Poppins, a paleta azul e a logo do site oficial da Onfly. Se o JSON não estiver disponível, exibe a
 amostra de validação.
 
+Ao publicar o projeto no GitHub, o workflow `.github/workflows/pages.yml` gera o relatório completo
+e publica o dashboard no GitHub Pages após um push para `main` (ou execução manual do workflow).
+
 Os testes já estão em `tests/`. No início, todos falham — é esperado. Rode:
 
 ```bash
