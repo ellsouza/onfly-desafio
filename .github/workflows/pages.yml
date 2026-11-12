@@ -28,21 +28,21 @@ jobs:
           python-version: "3.11"
 
       - name: Install runtime dependencies
-        run: python -m pip install -r onfly-desafio/requirements.txt
+        run: python -m pip install -r requirements.txt
 
       - name: Generate report
         run: |
           python -m onfly_report \
-            --input onfly-desafio/data/reservas_hoteis.csv \
-            --rates onfly-desafio/data/taxas_cambio.csv \
+            --input data/reservas_hoteis.csv \
+            --rates data/taxas_cambio.csv \
             --output site/output/report.json
         env:
-          PYTHONPATH: onfly-desafio/src
+          PYTHONPATH: src
 
       - name: Prepare Pages artifact
         run: |
           mkdir -p site
-          cp onfly-desafio/dashboard.html site/index.html
+          cp dashboard.html site/index.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

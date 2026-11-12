@@ -14,9 +14,9 @@ python3.11 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements-dev.txt
 
-PYTHONPATH=src python -m onfly\_report \\
-  --input data/reservas\_hoteis.csv \\
-  --rates data/taxas\_cambio.csv \\
+PYTHONPATH=src python -m onfly_report \
+  --input data/reservas_hoteis.csv \
+  --rates data/taxas_cambio.csv \
   --output output/report.json
 ```
 
@@ -46,7 +46,7 @@ pytest -q
 ```
 
 Corrija o código até todos passarem. **Não altere os testes fornecidos.** Se quiser, adicione
-testes novos em arquivos `test\_\*.py`.
+testes novos em arquivos `test_*.py`.
 
 ## Estrutura
 
@@ -55,12 +55,12 @@ testes novos em arquivos `test\_\*.py`.
 ├── README.md              # este arquivo
 ├── dashboard.html         # painel visual do relatório
 ├── pyproject.toml
-├── requirements\*.txt
+├── requirements*.txt
 ├── data/
-│   ├── reservas\_hoteis.csv
-│   ├── taxas\_cambio.csv
+│   ├── reservas_hoteis.csv
+│   ├── taxas_cambio.csv
 │   └── exemplo-validacao.csv
-├── src/onfly\_report/      # CLI
+├── src/onfly_report/       # CLI
 ├── tests/                 # testes fornecidos
 ├── entrega/               # sua entrega
 └── output/                # relatório gerado
@@ -75,13 +75,13 @@ As colunas do CSV são autoexplicativas. O relatório usa hotel, check-in, check
 ### Status
 
 * Só `CONFIRMED` é faturável.
-* `CANCELLED` e `NO\_SHOW` contam em `total\_reservations` e nas contagens por status, mas não entram
-em noites, valores, `by\_month` nem `top\_hotels`.
+* `CANCELLED` e `NO_SHOW` contam em `total_reservations` e nas contagens por status, mas não entram
+em noites, valores, `by_month` nem `top_hotels`.
 
 ### Noites
 
 ```
-room\_nights = (checkout\_date - checkin\_date).days \* rooms
+room_nights = (checkout_date - checkin_date).days * rooms
 ```
 
 A diferença é não inclusiva: check-in 10/01 e check-out 13/01 = 3 noites. Vale também na virada de
@@ -90,14 +90,14 @@ mês/ano.
 ### Câmbio
 
 * `amount` está na moeda de `currency`.
-* Converta com `amount \* rate\_to\_brl`, usando a tabela `data/taxas\_cambio.csv`.
+* Converta com `amount * rate_to_brl`, usando a tabela `data/taxas_cambio.csv`.
 * Todas as moedas do dataset têm taxa.
 
 ### Totais
 
-* `total\_reservations` = número de reservas no arquivo.
-* `confirmed\_reservations`, `cancelled\_reservations` e `no\_show\_reservations` = contagens por status.
-* `total\_room\_nights`, `total\_amount\_brl` e `average\_nightly\_rate\_brl` usam apenas `CONFIRMED`.
+* `total_reservations` = número de reservas no arquivo.
+* `confirmed_reservations`, `cancelled_reservations` e `no_show_reservations` = contagens por status.
+* `total_room_nights`, `total_amount_brl` e `average_nightly_rate_brl` usam apenas `CONFIRMED`.
 
 ### Ordem do processamento
 
@@ -109,22 +109,22 @@ ler → converter tipos → contar status → filtrar CONFIRMED → agregar
 
 * Use `Decimal`, nunca `float`, no dinheiro.
 * Some os valores exatos e arredonde **só na serialização**, para 2 casas, com half-up.
-* `average\_nightly\_rate\_brl = total\_amount\_brl / total\_room\_nights`; sem noites, `"0.00"`.
+* `average_nightly_rate_brl = total_amount_brl / total_room_nights`; sem noites, `"0.00"`.
 * Check-in/check-out são datas civis (`YYYY-MM-DD`).
-* `generated\_at` usa offset fixo `-03:00` e é ignorado na comparação.
+* `generated_at` usa offset fixo `-03:00` e é ignorado na comparação.
 
 ### Ordenação
 
-* `by\_month`: `month` ascendente.
-* `top\_hotels`: `total\_brl` decrescente; empate por `hotel\_id` ascendente.
+* `by_month`: `month` ascendente.
+* `top_hotels`: `total_brl` decrescente; empate por `hotel_id` ascendente.
 
 ## Contrato do CLI
 
 ```bash
-python -m onfly\_report \\
-  --input data/reservas\_hoteis.csv \\
-  --rates data/taxas\_cambio.csv \\
-  --output output/report.json \\
+python -m onfly_report \
+  --input data/reservas_hoteis.csv \
+  --rates data/taxas_cambio.csv \
+  --output output/report.json \
   --top 5
 ```
 
@@ -141,30 +141,30 @@ O relatório deve ter exatamente este formato:
 
 ```json
 {
-  "report\_version": "1.0",
-  "generated\_at": "2025-07-01T10:00:00-03:00",
+  "report_version": "1.0",
+  "generated_at": "2025-07-01T10:00:00-03:00",
   "summary": {
-    "total\_reservations": 0,
-    "confirmed\_reservations": 0,
-    "cancelled\_reservations": 0,
-    "no\_show\_reservations": 0,
-    "total\_room\_nights": 0,
-    "total\_amount\_brl": "0.00",
-    "average\_nightly\_rate\_brl": "0.00"
+    "total_reservations": 0,
+    "confirmed_reservations": 0,
+    "cancelled_reservations": 0,
+    "no_show_reservations": 0,
+    "total_room_nights": 0,
+    "total_amount_brl": "0.00",
+    "average_nightly_rate_brl": "0.00"
   },
-  "by\_month": \[
-    {"month": "2025-01", "reservations": 0, "room\_nights": 0, "total\_brl": "0.00"}
+  "by_month": [
+    {"month": "2025-01", "reservations": 0, "room_nights": 0, "total_brl": "0.00"}
   ],
-  "top\_hotels": \[
-    {"hotel\_id": "H01", "hotel\_name": "Hotel Exemplo", "room\_nights": 0, "total\_brl": "0.00"}
+  "top_hotels": [
+    {"hotel_id": "H01", "hotel_name": "Hotel Exemplo", "room_nights": 0, "total_brl": "0.00"}
   ]
 }
 ```
 
 * Dinheiro é string com exatamente 2 casas (`"1234.50"`), sem separador de milhar.
-* `report\_version` é sempre `"1.0"`.
-* `top\_hotels` tem `--top` itens (ou menos, se houver menos hotéis).
-* `by\_month` usa o mês do check-in.
+* `report_version` é sempre `"1.0"`.
+* `top_hotels` tem `--top` itens (ou menos, se houver menos hotéis).
+* `by_month` usa o mês do check-in.
 * Não altere nomes, tipos ou semântica dos campos.
 
 ## Amostra de validação
@@ -172,9 +172,9 @@ O relatório deve ter exatamente este formato:
 Rode o CLI na amostra e compare com o resultado abaixo:
 
 ```bash
-PYTHONPATH=src python -m onfly\_report \\
-  --input data/exemplo-validacao.csv \\
-  --rates data/taxas\_cambio.csv \\
+PYTHONPATH=src python -m onfly_report \
+  --input data/exemplo-validacao.csv \
+  --rates data/taxas_cambio.csv \
   --output output/exemplo.json
 ```
 
@@ -182,20 +182,20 @@ PYTHONPATH=src python -m onfly\_report \\
 
 |Campo|Valor esperado|
 |-|-|
-|`total\_reservations`|12|
-|`confirmed\_reservations`|9|
-|`cancelled\_reservations`|2|
-|`no\_show\_reservations`|1|
-|`total\_room\_nights`|28|
-|`total\_amount\_brl`|7566.00|
-|`average\_nightly\_rate\_brl`|270.21|
+|`total_reservations`|12|
+|`confirmed_reservations`|9|
+|`cancelled_reservations`|2|
+|`no_show_reservations`|1|
+|`total_room_nights`|28|
+|`total_amount_brl`|7566.00|
+|`average_nightly_rate_brl`|270.21|
 
-|`month`|`reservations`|`room\_nights`|`total\_brl`|
+|`month`|`reservations`|`room_nights`|`total_brl`|
 |-|-|-|-|
 |2025-01|8|25|6684.00|
 |2025-02|1|3|882.00|
 
-|`hotel\_id`|`hotel\_name`|`room\_nights`|`total\_brl`|
+|`hotel_id`|`hotel_name`|`room_nights`|`total_brl`|
 |-|-|-|-|
 |H01|Hotel Aurora Paulista|3|1200.00|
 |H02|Hotel Mirante|2|1084.00|
@@ -237,7 +237,7 @@ consolidado de prompts e respostas) e uma `declaracao.md` com:
 
 * O comando e os argumentos do CLI.
 * O schema e a semântica do relatório acima.
-* Os arquivos `data/reservas\_hoteis.csv` e `data/taxas\_cambio.csv`.
+* Os arquivos `data/reservas_hoteis.csv` e `data/taxas_cambio.csv`.
 
 Você pode reorganizar o código interno, adicionar arquivos, melhorar logs e adicionar testes. Os
 testes fornecidos devem permanecer inalterados.
@@ -249,10 +249,10 @@ testes fornecidos passam sem alteração. Testes adicionais são considerados.
 
 ## Checklist
 
-* \[ ] O CLI roda com Python 3.11 (`PYTHONPATH=src python -m onfly\_report ...`).
-* \[ ] O comando de execução gera `output/report.json` sem erro.
-* \[ ] O relatório segue o contrato acima.
-* \[ ] `pytest -q` passa com os testes fornecidos.
-* \[ ] `entrega/README-ENTREGA.md` preenchido.
-* \[ ] Sessão + declaração apenas no caminho com IA; investigação no README-ENTREGA nos dois caminhos.
-* \[ ] Repositório público no GitHub com o projeto e o link enviado.
+* [ ] O CLI roda com Python 3.11 (`PYTHONPATH=src python -m onfly_report ...`).
+* [ ] O comando de execução gera `output/report.json` sem erro.
+* [ ] O relatório segue o contrato acima.
+* [ ] `pytest -q` passa com os testes fornecidos.
+* [ ] `entrega/README-ENTREGA.md` preenchido.
+* [ ] Sessão + declaração apenas no caminho com IA; investigação no README-ENTREGA nos dois caminhos.
+* [ ] Repositório público no GitHub com o projeto e o link enviado.
