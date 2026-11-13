@@ -33,7 +33,7 @@ Este arquivo registra os principais direcionamentos, prompts e resultados. Não 
 
 7. **Direcionamento:** verificar responsividade e preparar commits, PR e publicação do dashboard.
    **Atuação da usuária:** pediu a verificação antes da publicação e definiu que arquivos descartáveis não deveriam ser commitados.
-   **Apoio da IA:** conferiu 320, 375, 768, 1024 e 1440 px, sem rolagem horizontal da página, preparou o workflow de GitHub Pages e enviou os branches `main` e `feature/onfly-dashboard-pages` ao repositório `ellsouza/onfly-desafio`. A abertura do PR e a publicação ficaram pendentes.
+   **Apoio da IA:** conferiu 320, 375, 768, 1024 e 1440 px, sem rolagem horizontal da página, preparou o workflow de GitHub Pages e enviou os branches `main` e `feature/onfly-dashboard-pages` ao repositório `ellsouza/onfly-desafio`. O PR #1 foi mesclado à `main`; após habilitar a origem GitHub Actions, o dashboard foi publicado.
 
 8. **Direcionamento:** corrigir a estrutura para o GitHub exibir o README e os arquivos do projeto na raiz e reconhecer o dashboard HTML.
    **Atuação da usuária:** identificou o problema de organização e explicou o impacto na apresentação e no GitHub Pages.

@@ -5,6 +5,10 @@ Você recebeu a exportação de reservas de hotel de uma empresa cliente da Onfl
 **Sua tarefa:** encontrar e corrigir os defeitos do CLI, fazer os testes fornecidos passarem e
 entregar o projeto.
 
+## Resolução online
+
+[Acessar o dashboard publicado no GitHub Pages](https://ellsouza.github.io/onfly-desafio/).
+
 ## Como rodar
 
 Requisitos: Python 3.11+ e pytest para os testes (`requirements-dev.txt`).
@@ -249,10 +253,11 @@ testes fornecidos passam sem alteração. Testes adicionais são considerados.
 
 ## Checklist
 
-* [ ] O CLI roda com Python 3.11 (`PYTHONPATH=src python -m onfly_report ...`).
-* [ ] O comando de execução gera `output/report.json` sem erro.
-* [ ] O relatório segue o contrato acima.
-* [ ] `pytest -q` passa com os testes fornecidos.
-* [ ] `entrega/README-ENTREGA.md` preenchido.
-* [ ] Sessão + declaração apenas no caminho com IA; investigação no README-ENTREGA nos dois caminhos.
-* [ ] Repositório público no GitHub com o projeto e o link enviado.
+* [x] O CLI roda com Python 3.11 (`PYTHONPATH=src python -m onfly_report ...`), validado no workflow do GitHub Pages.
+* [x] O comando de execução gera `output/report.json` sem erro.
+* [x] O relatório segue o contrato acima; amostra e arquivo completo foram conferidos.
+* [x] `pytest -q` passa com os testes fornecidos (`5 passed`).
+* [x] `entrega/README-ENTREGA.md` preenchido.
+* [x] Sessão + declaração no caminho com IA; investigação no README-ENTREGA.
+* [x] Repositório público no GitHub com o projeto e o link da resolução publicado acima.
+* [ ] Enviar o link da resolução ao time pelo formulário do desafio.
