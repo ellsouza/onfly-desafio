@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#faf9f5" />
+    <title>Onfly | Histórias de hospedagem</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+      :root {
+        --ink: #0d0d0d;
+        --ink-soft: #3a4b52;
+        --muted: #6f7c80;
+        --paper: #faf9f5;
+        --white: #fffefa;
+        --brand-blue: #009efb;
+        --brand-light: #e2f3ff;
+        --coral: #e29670;
+        --onfly-blue: #009efb;
+        --line: #e8e8e1;
+        --shadow: 0 18px 48px rgba(31, 57, 54, 0.08);
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        min-width: 320px;
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: 'Poppins', 'Segoe UI', sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      button { font: inherit; }
+
+      .hero {
+        position: relative;
+        display: flex;
+        min-height: 510px;
+        flex-direction: column;
+        overflow: hidden;
+        padding: 26px max(5.5vw, 24px) 46px;
+        background-color: #3a554e;
+        background-image:
+          linear-gradient(90deg, rgba(14, 35, 38, 0.72) 0%, rgba(14, 35, 38, 0.46) 47%, rgba(14, 35, 38, 0.1) 100%),
+          linear-gradient(0deg, rgba(12, 31, 34, 0.42), transparent 55%),
+          url('https://www.onfly.com.br/wp-content/uploads/2026/05/hero-fullhd-atualizado.webp');
+        background-position: center 52%;
+        background-size: cover;
+        color: #fff;
+      }
+
+      .topbar, .hero-copy, .hero-foot {
+        position: relative;
+        z-index: 1;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.26);
+        padding-bottom: 19px;
+      }
+
+      .brand-lockup {
+        display: inline-flex;
+        align-items: center;
+        padding: 0;
+        background: transparent;
+      }
+
+      .logo {
+        display: block;
+        width: 132px;
+        height: auto;
+        object-fit: contain;
+        filter: brightness(0) invert(1);
+      }
+
+      .topnav {
+        display: flex;
+        align-items: center;
+        gap: clamp(14px, 2.7vw, 34px);
+        color: rgba(255, 255, 255, 0.88);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+      }
+
+      .topnav a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 160ms ease;
+      }
+
+      .topnav a:hover { color: #a9f0e2; }
+
+      .hero-copy {
+        width: min(660px, 100%);
+        margin: auto 0;
+        padding: 62px 0 46px;
+        animation: enter 700ms both;
+      }
+
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        margin: 0 0 18px;
+        color: #a9f0e2;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.17em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        width: 28px;
+        height: 1px;
+        background: currentColor;
+        content: '';
+      }
+
+      h1, h2, p { margin-top: 0; }
+
+      h1 {
+        max-width: 640px;
+        margin-bottom: 15px;
+        font-family: 'Poppins', sans-serif;
+        font-size: clamp(2.9rem, 6.8vw, 5.7rem);
+        font-weight: 500;
+        letter-spacing: -0.045em;
+        line-height: 0.99;
+        text-wrap: balance;
+      }
+
+      .hero-subtitle {
+        max-width: 455px;
+        margin-bottom: 24px;
+        color: rgba(255, 255, 255, 0.84);
+        font-size: clamp(0.94rem, 1.5vw, 1.08rem);
+        line-height: 1.65;
+      }
+
+      .hero-action {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 13px 17px;
+        border: 0;
+        border-radius: 4px;
+        background: var(--onfly-blue);
+        color: white;
+        cursor: pointer;
+        font-size: 0.73rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: background 160ms ease, transform 160ms ease;
+      }
+
+      .hero-action:hover {
+        transform: translateY(-2px);
+        background: #0788c6;
+      }
+
+      .hero-action span { font-size: 1rem; }
+
+      .hero-foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 0.73rem;
+      }
+
+      .hero-meta {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
+
+      .hero-meta strong {
+        color: #fff;
+        font-size: 0.82rem;
+      }
+
+      .hero-index {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        letter-spacing: 0.08em;
+      }
+
+      .hero-index::before {
+        width: 54px;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.6);
+        content: '';
+      }
+
+      .main {
+        width: min(1180px, calc(100% - 48px));
+        margin: 0 auto;
+        padding: 55px 0 72px;
+      }
+
+      .section-heading {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 23px;
+      }
+
+      .section-kicker {
+        margin: 0 0 8px;
+        color: var(--brand-blue);
+        font-size: 0.67rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        margin-bottom: 0;
+        font-family: 'Poppins', sans-serif;
+        font-size: clamp(1.8rem, 3vw, 2.55rem);
+        font-weight: 500;
+        letter-spacing: -0.035em;
+      }
+
+      .section-note {
+        max-width: 330px;
+        margin-bottom: 3px;
+        color: var(--muted);
+        font-size: 0.82rem;
+        line-height: 1.6;
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .metric {
+        position: relative;
+        min-height: 142px;
+        padding: 20px;
+        border: 1px solid #e8e9e1;
+        border-radius: 7px;
+        background: var(--white);
+        box-shadow: 0 8px 26px rgba(31, 57, 54, 0.035);
+        animation: enter 600ms both;
+      }
+
+      .metric:nth-child(2) { animation-delay: 60ms; }
+      .metric:nth-child(3) { animation-delay: 120ms; }
+      .metric:nth-child(4) { animation-delay: 180ms; }
+      .metric:nth-child(5) { animation-delay: 240ms; }
+      .metric:nth-child(6) { animation-delay: 300ms; }
+      .metric:nth-child(7) { animation-delay: 360ms; }
+
+      .metric-label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 19px;
+        color: #75858a;
+        font-size: 0.72rem;
+        font-weight: 600;
+      }
+
+      .metric-icon {
+        display: grid;
+        width: 25px;
+        height: 25px;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--brand-light);
+        color: var(--brand-blue);
+        font-size: 0.7rem;
+        font-weight: 700;
+      }
+
+      .metric-value {
+        color: var(--ink);
+        font-family: 'Poppins', sans-serif;
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        font-weight: 600;
+        letter-spacing: -0.045em;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .metric-note {
+        margin-top: 5px;
+        color: #94a0a0;
+        font-size: 0.69rem;
+      }
+
+      .metric--accent { border-top: 3px solid var(--brand-blue); }
+      .metric--warm { border-top: 3px solid var(--coral); }
+
+      .analysis-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+        gap: 15px;
+        margin-top: 15px;
+      }
+
+      .panel {
+        overflow: hidden;
+        border: 1px solid #e8e9e1;
+        border-radius: 7px;
+        background: var(--white);
+        box-shadow: 0 8px 26px rgba(31, 57, 54, 0.035);
+      }
+
+      .panel-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 15px;
+        padding: 21px 22px 15px;
+      }
+
+      .panel-head h3 {
+        margin: 0;
+        font-size: 0.92rem;
+        font-weight: 700;
+      }
+
+      .panel-head p {
+        margin: 5px 0 0;
+        color: var(--muted);
+        font-size: 0.73rem;
+      }
+
+      .panel-label {
+        color: var(--brand-blue);
+        font-size: 0.67rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .chart {
+        display: flex;
+        min-height: 230px;
+        align-items: flex-end;
+        gap: 15px;
+        padding: 19px 24px 21px;
+        border-top: 1px solid #f0f0eb;
+        background: repeating-linear-gradient(to top, transparent 0, transparent 43px, #f0f1ec 44px);
+      }
+
+      .chart-empty {
+        align-self: center;
+        width: 100%;
+        color: var(--muted);
+        font-size: 0.8rem;
+        text-align: center;
+      }
+
+      .bar-column {
+        display: flex;
+        min-width: 0;
+        height: 185px;
+        flex: 1 1 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+
+      .bar-value {
+        color: var(--ink-soft);
+        font-size: 0.68rem;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+      }
+
+      .bar-track {
+        display: flex;
+        width: min(100%, 56px);
+        height: 132px;
+        align-items: flex-end;
+        overflow: hidden;
+        border-radius: 4px 4px 1px 1px;
+        background: #edf2ef;
+      }
+
+      .bar {
+        width: 100%;
+        min-height: 3px;
+        border-radius: 4px 4px 0 0;
+        background: linear-gradient(180deg, #62c6ff, #009efb);
+        transform-origin: bottom;
+        animation: grow 650ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+      }
+
+      .bar-column:nth-child(even) .bar {
+        background: linear-gradient(180deg, #339ce0, #1378bd);
+      }
+
+      .bar-label {
+        width: 100%;
+        overflow: hidden;
+        color: var(--muted);
+        font-size: 0.68rem;
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .hotel-list {
+        display: grid;
+        gap: 14px;
+        padding: 5px 22px 21px;
+      }
+
+      .hotel-row {
+        display: grid;
+        grid-template-columns: 24px minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 9px;
+      }
+
+      .hotel-rank {
+        color: #a0aaa7;
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.05rem;
+      }
+
+      .hotel-info { min-width: 0; }
+
+      .hotel-name {
+        overflow: hidden;
+        color: var(--ink);
+        font-size: 0.76rem;
+        font-weight: 600;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .hotel-sub {
+        margin-top: 3px;
+        color: #8c9997;
+        font-size: 0.67rem;
+      }
+
+      .hotel-amount {
+        color: var(--brand-blue);
+        font-size: 0.75rem;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+      }
+
+      .table-panel { margin-top: 15px; }
+      .table-wrap { overflow-x: auto; }
+
+      .brand-showcase { margin-top: 64px; }
+
+      .brand-gallery {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .brand-card {
+        overflow: hidden;
+        border: 1px solid #e8e9e1;
+        border-radius: 7px;
+        background: var(--white);
+        box-shadow: 0 8px 26px rgba(31, 57, 54, 0.035);
+        transition: transform 180ms ease, box-shadow 180ms ease;
+      }
+
+      .brand-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 14px 32px rgba(31, 57, 54, 0.1);
+      }
+
+      .brand-image {
+        display: grid;
+        height: 220px;
+        place-items: center;
+        overflow: hidden;
+        background: #e8f4fb;
+      }
+
+      .brand-image img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 350ms ease;
+      }
+
+      .brand-card:hover .brand-image img { transform: scale(1.035); }
+
+      .brand-image--product img {
+        width: 88%;
+        height: 88%;
+        object-fit: contain;
+      }
+
+      .brand-caption { padding: 18px 19px 17px; }
+
+      .brand-caption .section-kicker { margin-bottom: 7px; }
+
+      .brand-caption h3 {
+        margin: 0 0 7px;
+        color: var(--ink);
+        font-size: 0.91rem;
+        font-weight: 600;
+      }
+
+      .brand-caption p {
+        min-height: 42px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.73rem;
+        line-height: 1.6;
+      }
+
+      .image-source {
+        display: inline-block;
+        margin-top: 12px;
+        color: var(--brand-blue);
+        font-size: 0.65rem;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .image-source:hover { text-decoration: underline; }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        white-space: nowrap;
+      }
+
+      th, td {
+        padding: 13px 20px;
+        border-top: 1px solid #efefe9;
+        text-align: left;
+      }
+
+      th {
+        color: #899692;
+        font-size: 0.66rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      td {
+        color: #425b5e;
+        font-size: 0.76rem;
+      }
+
+      tbody tr:hover { background: #f8faf6; }
+
+      .money {
+        color: var(--brand-blue);
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .hotel-id {
+        display: inline-block;
+        padding: 4px 7px;
+        border-radius: 3px;
+        background: var(--brand-light);
+        color: #0078c6;
+        font-size: 0.68rem;
+        font-weight: 700;
+      }
+
+      .story {
+        margin-top: 65px;
+        padding: clamp(25px, 5vw, 48px);
+        border-radius: 8px;
+        background: #edf5fb;
+      }
+
+      .story-intro {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(260px, 0.72fr);
+        align-items: end;
+        gap: 30px;
+        margin-bottom: 26px;
+      }
+
+      .story-intro h2 { max-width: 590px; }
+
+      .story-lede {
+        margin-bottom: 4px;
+        color: #546b78;
+        font-size: 0.82rem;
+        line-height: 1.75;
+      }
+
+      .process-flow {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        overflow-x: auto;
+        padding: 14px 0 20px;
+        border-top: 1px solid #d5e4ef;
+      }
+
+      .process-node {
+        flex: 0 0 auto;
+        padding: 8px 11px;
+        border: 1px solid #d5e4ef;
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.76);
+        color: #315366;
+        font-size: 0.69rem;
+        font-weight: 600;
+      }
+
+      .process-arrow {
+        flex: 0 0 auto;
+        color: var(--brand-blue);
+        font-size: 0.8rem;
+      }
+
+      .findings {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 11px;
+      }
+
+      .finding {
+        min-height: 148px;
+        padding: 17px 17px 16px;
+        border: 1px solid #dbe8f0;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.85);
+      }
+
+      .finding-label {
+        margin: 0 0 9px;
+        color: var(--brand-blue);
+        font-size: 0.64rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .finding h3 {
+        margin: 0 0 7px;
+        color: var(--ink);
+        font-size: 0.83rem;
+      }
+
+      .finding p {
+        margin: 0;
+        color: #617681;
+        font-size: 0.71rem;
+        line-height: 1.65;
+      }
+
+      .finding code {
+        color: #245c7d;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.68rem;
+        font-weight: 600;
+      }
+
+      .validation {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        margin-top: 13px;
+        padding: 17px 19px;
+        border-radius: 5px;
+        background: var(--brand-blue);
+        color: #fff;
+      }
+
+      .validation-copy {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .validation-check {
+        display: grid;
+        width: 30px;
+        height: 30px;
+        flex: 0 0 auto;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        border-radius: 50%;
+        font-weight: 700;
+      }
+
+      .validation strong {
+        display: block;
+        margin-bottom: 3px;
+        font-size: 0.77rem;
+      }
+
+      .validation p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.69rem;
+      }
+
+      .validation-result {
+        flex: 0 0 auto;
+        padding: 8px 11px;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 4px;
+        font-size: 0.72rem;
+        font-weight: 700;
+      }
+
+      .site-footer {
+        width: 100%;
+        background: var(--brand-blue);
+        color: #fff;
+      }
+
+      .footer-inner {
+        display: flex;
+        width: min(1180px, calc(100% - 48px));
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        margin: 0 auto;
+        padding: 28px 0;
+      }
+
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .footer-logo {
+        display: block;
+        width: 122px;
+        height: auto;
+        filter: brightness(0) invert(1);
+      }
+
+      .footer-description {
+        max-width: 250px;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.83);
+        font-size: 0.72rem;
+        line-height: 1.55;
+      }
+
+      .footer-meta {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 8px 26px;
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.68rem;
+      }
+
+      .author-link {
+        color: #fff;
+        font-weight: 600;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .author-link:hover { color: #d7f0ff; }
+
+      .notice {
+        display: none;
+        margin: 0 0 16px;
+        padding: 12px 15px;
+        border: 1px solid #f0c4aa;
+        border-radius: 5px;
+        background: #fff5ed;
+        color: #99543e;
+        font-size: 0.78rem;
+      }
+
+      @keyframes enter {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes grow {
+        from { transform: scaleY(0.08); }
+        to { transform: scaleY(1); }
+      }
+
+      @media (max-width: 900px) {
+        .hero { min-height: 470px; }
+        .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .analysis-grid { grid-template-columns: 1fr; }
+        .brand-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .story-intro { grid-template-columns: 1fr; gap: 15px; }
+        .findings { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+
+      @media (max-width: 600px) {
+        .hero { min-height: 530px; padding: 20px 20px 26px; background-position: 58% center; }
+        .topbar { align-items: flex-start; }
+        .topnav { justify-content: flex-end; flex-wrap: wrap; gap: 10px 15px; font-size: 0.61rem; }
+        .topnav a:nth-child(2), .topnav a:nth-child(3) { display: none; }
+        .hero-copy { padding: 60px 0 40px; }
+        h1 { font-size: clamp(2.9rem, 15vw, 4.3rem); }
+        .hero-foot { align-items: flex-start; flex-direction: column; }
+        .hero-meta { gap: 17px; }
+        .hero-index { display: none; }
+        .main { width: calc(100% - 32px); padding-top: 40px; }
+        .section-heading { align-items: flex-start; flex-direction: column; gap: 10px; }
+        .metrics { gap: 9px; }
+        .metric { min-height: 126px; padding: 14px 12px; }
+        .metric-label { gap: 6px; font-size: 0.66rem; }
+        .metric-icon { width: 22px; height: 22px; }
+        .metric-value { font-size: clamp(1.3rem, 6vw, 1.7rem); }
+        .metric-note { font-size: 0.63rem; }
+        .chart { gap: 7px; padding-right: 13px; padding-left: 13px; }
+        .bar-value { font-size: 0.59rem; }
+        .story { margin-top: 43px; padding: 24px 18px; }
+        .brand-gallery { grid-template-columns: 1fr; }
+        .brand-image { height: 210px; }
+        .findings { grid-template-columns: 1fr; }
+        .finding { min-height: 0; }
+        .validation { align-items: flex-start; flex-direction: column; }
+        .footer-inner { width: calc(100% - 32px); align-items: flex-start; flex-direction: column; gap: 20px; }
+        .footer-brand { align-items: flex-start; flex-direction: column; gap: 11px; }
+        .footer-meta { justify-content: flex-start; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero" id="inicio">
+      <div class="topbar">
+        <a class="brand-lockup" href="#inicio" aria-label="Onfly, início">
+          <img
+            class="logo"
+            src="https://www.onfly.com.br/wp-content/uploads/2025/02/logo-onfly-azul.svg"
+            alt="Onfly"
+          />
+        </a>
+        <nav class="topnav" aria-label="Navegação principal">
+          <a href="#visao">Visão geral</a>
+          <a href="#analise">Análises</a>
+          <a href="#experiencia">Onfly</a>
+          <a href="#metodo">Como foi resolvido</a>
+        </nav>
+      </div>
+
+      <div class="hero-copy">
+        <p class="eyebrow">Onfly · inteligência em viagens</p>
+        <h1>Mais clareza em cada estadia.</h1>
+        <p class="hero-subtitle">
+          Um olhar direto sobre as hospedagens corporativas: o que foi confirmado,
+          quanto custou e onde estão os melhores resultados.
+        </p>
+        <a class="hero-action" href="#visao">Explorar relatório <span aria-hidden="true">↘</span></a>
+      </div>
+
+      <div class="hero-foot">
+        <div class="hero-meta">
+          <span><strong id="hero-reservations">—</strong> reservas no período</span>
+          <span><strong id="hero-nights">—</strong> noites confirmadas</span>
+        </div>
+        <span class="hero-index">01 / HOTEL PERFORMANCE</span>
+      </div>
+    </header>
+
+    <main class="main">
+      <section id="visao" aria-labelledby="overview-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">O relatório em números</p>
+            <h2 id="overview-title">Uma visão que vai além da reserva.</h2>
+          </div>
+          <p class="section-note">Somente estadias confirmadas entram nos valores, nas noites e no ranking.</p>
+        </div>
+
+        <div id="load-notice" class="notice" role="status"></div>
+        <div id="summary" class="metrics" aria-label="Indicadores principais"></div>
+      </section>
+
+      <section id="analise" class="analysis-grid" aria-label="Análises de hospedagem">
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <h3>Investimento ao longo do tempo</h3>
+              <p>Valores confirmados agrupados pelo mês do check-in</p>
+            </div>
+            <span class="panel-label">BRL / mês</span>
+          </div>
+          <div id="monthly-chart" class="chart" role="img" aria-label="Gráfico de valores por mês"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <h3>Destinos em destaque</h3>
+              <p>Hotéis com maior valor confirmado</p>
+            </div>
+            <span class="panel-label">TOP 5</span>
+          </div>
+          <div id="hotel-ranking" class="hotel-list"></div>
+        </article>
+      </section>
+
+      <section class="panel table-panel" aria-labelledby="monthly-title">
+        <div class="panel-head">
+          <div>
+            <h3 id="monthly-title">Detalhe por mês</h3>
+            <p>Reservas confirmadas, noites e valor total</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Mês</th><th>Reservas</th><th>Noites</th><th>Valor total</th></tr>
+            </thead>
+            <tbody id="by-month"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel table-panel" aria-labelledby="hotel-title">
+        <div class="panel-head">
+          <div>
+            <h3 id="hotel-title">Onde o valor se concentra</h3>
+            <p>Ranking ordenado pelo total em reais</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Hotel</th><th>Nome</th><th>Noites</th><th>Valor total</th></tr>
+            </thead>
+            <tbody id="top-hotels"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="experiencia" class="brand-showcase" aria-labelledby="experience-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Mais possibilidades em movimento</p>
+            <h2 id="experience-title">A experiência Onfly vai além da viagem.</h2>
+          </div>
+          <p class="section-note">Viagens, pagamentos e tecnologia conectados para simplificar cada jornada.</p>
+        </div>
+
+        <div class="brand-gallery">
+          <article class="brand-card">
+            <div class="brand-image">
+              <img
+                src="https://startups.com.br/wp-content/uploads/2024/03/onfly-viagens-de-lazer-jpg.webp"
+                alt="Itens de viagem e lazer com referências a uma viagem de avião"
+                decoding="async"
+              />
+            </div>
+            <div class="brand-caption">
+              <p class="section-kicker">01 · Viagens</p>
+              <h3>Um mundo de possibilidades</h3>
+              <p>Uma jornada pode começar a trabalho e continuar em novas experiências.</p>
+              <a class="image-source" href="https://startups.com.br/wp-content/uploads/2024/03/onfly-viagens-de-lazer-jpg.webp" target="_blank" rel="noopener noreferrer">Imagem via Startups.com.br ↗</a>
+            </div>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-image brand-image--product">
+              <img
+                src="https://www.onfly.com.br/wp-content/uploads-webpc/uploads/2025/02/cartao-atualizado.png.webp"
+                alt="Cartão corporativo Onfly"
+                decoding="async"
+              />
+            </div>
+            <div class="brand-caption">
+              <p class="section-kicker">02 · Pagamentos</p>
+              <h3>Despesas sob controle</h3>
+              <p>Mais visibilidade e praticidade para acompanhar gastos durante a viagem.</p>
+              <a class="image-source" href="https://www.onfly.com.br/wp-content/uploads-webpc/uploads/2025/02/cartao-atualizado.png.webp" target="_blank" rel="noopener noreferrer">Imagem: Onfly ↗</a>
+            </div>
+          </article>
+
+          <article class="brand-card">
+            <div class="brand-image brand-image--product">
+              <img
+                src="https://www.onfly.com.br/wp-content/uploads-webpc/uploads/2024/03/teste-hero-site-2-2048x1707.png.webp"
+                alt="Ilustração da plataforma Onfly com viajante, avião, cartão e recursos digitais"
+                decoding="async"
+              />
+            </div>
+            <div class="brand-caption">
+              <p class="section-kicker">03 · Plataforma</p>
+              <h3>Tudo conectado em um só lugar</h3>
+              <p>Tecnologia para organizar a viagem corporativa do planejamento à prestação de contas.</p>
+              <a class="image-source" href="https://www.onfly.com.br/wp-content/uploads-webpc/uploads/2024/03/teste-hero-site-2-2048x1707.png.webp" target="_blank" rel="noopener noreferrer">Imagem: Onfly ↗</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="metodo" class="story" aria-labelledby="story-title">
+        <div class="story-intro">
+          <div>
+            <p class="section-kicker">Como a solução foi desenvolvida</p>
+            <h2 id="story-title">Cada divergência foi rastreada até a causa.</h2>
+          </div>
+          <p class="story-lede">
+            A análise começou pelos testes fornecidos. As falhas apontaram problemas em etapas
+            diferentes do CLI; o fluxo foi percorrido da leitura do CSV à serialização do JSON,
+            corrigindo a lógica na origem em vez de compensar os valores no relatório.
+          </p>
+        </div>
+
+        <div class="process-flow" aria-label="Fluxo de processamento implementado">
+          <span class="process-node">CSV de reservas</span>
+          <span class="process-arrow" aria-hidden="true">→</span>
+          <span class="process-node">Parser tipado</span>
+          <span class="process-arrow" aria-hidden="true">→</span>
+          <span class="process-node">Contagem por status</span>
+          <span class="process-arrow" aria-hidden="true">→</span>
+          <span class="process-node">Filtro CONFIRMED</span>
+          <span class="process-arrow" aria-hidden="true">→</span>
+          <span class="process-node">Agregações</span>
+          <span class="process-arrow" aria-hidden="true">→</span>
+          <span class="process-node">Relatório JSON</span>
+        </div>
+
+        <div class="findings">
+          <article class="finding">
+            <p class="finding-label">01 · Diagnóstico</p>
+            <h3>Os testes orientaram a análise</h3>
+            <p>As falhas mostraram resultados concretos: conversão incorreta, noite negativa na virada do mês, status indevido nos totais e ranking invertido.</p>
+          </article>
+          <article class="finding">
+            <p class="finding-label">02 · Datas</p>
+            <h3>O cálculo passou a usar datas completas</h3>
+            <p>A subtração do dia do mês foi substituída pela diferença entre datas completas: <code>(checkout - checkin).days × quartos</code>. Assim, 30 jan → 2 fev resulta em 3 noites.</p>
+          </article>
+          <article class="finding">
+            <p class="finding-label">03 · Câmbio e precisão</p>
+            <h3>Os valores exatos foram preservados</h3>
+            <p>A divisão foi substituída por <code>amount × rate_to_brl</code>, mantendo <code>Decimal</code> até a saída. O arredondamento half-up ocorre apenas na serialização.</p>
+          </article>
+          <article class="finding">
+            <p class="finding-label">04 · Regra de faturamento</p>
+            <h3>Contagem e faturamento foram separados</h3>
+            <p>Todas as reservas continuam no total e nas contagens por status. Só <code>CONFIRMED</code> entra em noites, valores, médias, agrupamento mensal e hotéis.</p>
+          </article>
+          <article class="finding">
+            <p class="finding-label">05 · Agregação</p>
+            <h3>O ranking passou a seguir a regra definida</h3>
+            <p>O ranking agora usa total em BRL decrescente e <code>hotel_id</code> crescente nos empates. O mês continua sendo definido pelo check-in.</p>
+          </article>
+          <article class="finding">
+            <p class="finding-label">06 · Integridade da entrada</p>
+            <h3>Perdas silenciosas foram eliminadas</h3>
+            <p>O limite artificial de 200 linhas foi removido, e status e moeda foram normalizados para maiúsculas antes das comparações e do lookup de taxas.</p>
+          </article>
+        </div>
+
+        <div class="validation">
+          <div class="validation-copy">
+            <span class="validation-check" aria-hidden="true">✓</span>
+            <div>
+              <strong>Validação de ponta a ponta</strong>
+              <p>Sem alterar os testes: a amostra fechou em 12 reservas (9 confirmadas), 28 noites, R$ 7.566,00 e média de R$ 270,21/noite.</p>
+            </div>
+          </div>
+          <span class="validation-result">5/5 testes passaram</span>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="#inicio" aria-label="Onfly, voltar ao início">
+            <img class="footer-logo" src="https://www.onfly.com.br/wp-content/uploads/2025/02/logo-onfly-azul.svg" alt="Onfly" />
+          </a>
+          <p class="footer-description">Consolidador de hospedagens corporativas.<br />Viagens a trabalho não precisam dar trabalho.</p>
+        </div>
+        <div class="footer-meta">
+          <span>Projeto por <a class="author-link" href="https://www.linkedin.com/in/ellen-souza-a266372b8/" target="_blank" rel="noopener noreferrer">Ellen Souza de Almeida ↗</a></span>
+          <span id="generated-at">Relatório em preparação</span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const sampleReport = {
+        generated_at: '2025-07-01T10:00:00-03:00',
+        summary: {
+          total_reservations: 12,
+          confirmed_reservations: 9,
+          cancelled_reservations: 2,
+          no_show_reservations: 1,
+          total_room_nights: 28,
+          total_amount_brl: '7566.00',
+          average_nightly_rate_brl: '270.21'
+        },
+        by_month: [
+          { month: '2025-01', reservations: 8, room_nights: 25, total_brl: '6684.00' },
+          { month: '2025-02', reservations: 1, room_nights: 3, total_brl: '882.00' }
+        ],
+        top_hotels: [
+          { hotel_id: 'H01', hotel_name: 'Hotel Aurora Paulista', room_nights: 3, total_brl: '1200.00' },
+          { hotel_id: 'H02', hotel_name: 'Hotel Mirante', room_nights: 2, total_brl: '1084.00' },
+          { hotel_id: 'H12', hotel_name: 'Hotel Miami Beach', room_nights: 1, total_brl: '1000.00' },
+          { hotel_id: 'H10', hotel_name: 'Hotel Madrid, Gran Vía', room_nights: 4, total_brl: '900.00' },
+          { hotel_id: 'H09', hotel_name: 'Hotel Lisboa, Centro', room_nights: 3, total_brl: '882.00' }
+        ]
+      };
+
+      const formatMoney = value => `R$ ${Number(value || 0).toLocaleString('pt-BR', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      })}`;
+
+      function node(tag, className, text) {
+        const element = document.createElement(tag);
+        if (className) element.className = className;
+        if (text !== undefined) element.textContent = text;
+        return element;
+      }
+
+      function renderSummary(summary) {
+        const items = [
+          { label: 'Reservas totais', value: summary.total_reservations, note: 'Todos os status', icon: '↗' },
+          { label: 'Confirmadas', value: summary.confirmed_reservations, note: 'Faturáveis', icon: '✓', accent: true },
+          { label: 'Noites de quarto', value: summary.total_room_nights, note: 'Estadias confirmadas', icon: '⌂' },
+          { label: 'Total em BRL', value: formatMoney(summary.total_amount_brl), note: 'Valor convertido', icon: 'R$', accent: true },
+          { label: 'Média por noite', value: formatMoney(summary.average_nightly_rate_brl), note: 'Por noite de quarto', icon: '◉' },
+          { label: 'Canceladas', value: summary.cancelled_reservations, note: 'Não faturáveis', icon: '×', warm: true },
+          { label: 'No-show', value: summary.no_show_reservations, note: 'Não faturáveis', icon: '—', warm: true }
+        ];
+        const root = document.getElementById('summary');
+        root.replaceChildren();
+
+        items.forEach(item => {
+          const card = node('article', `metric${item.accent ? ' metric--accent' : ''}${item.warm ? ' metric--warm' : ''}`);
+          const label = node('div', 'metric-label');
+          label.append(node('span', 'metric-icon', item.icon), document.createTextNode(item.label));
+          card.append(label, node('div', 'metric-value', item.value), node('div', 'metric-note', item.note));
+          root.append(card);
+        });
+      }
+
+      function renderMonthlyChart(rows) {
+        const chart = document.getElementById('monthly-chart');
+        chart.replaceChildren();
+        if (!rows.length) {
+          chart.append(node('p', 'chart-empty', 'Ainda não há valores mensais para mostrar.'));
+          return;
+        }
+
+        const values = rows.map(row => Number(row.total_brl) || 0);
+        const maximum = Math.max(...values, 0);
+        rows.forEach((row, index) => {
+          const column = node('div', 'bar-column');
+          const value = Number(row.total_brl) || 0;
+          const track = node('div', 'bar-track');
+          const bar = node('div', 'bar');
+          bar.style.height = `${maximum ? Math.max(value / maximum * 100, 3) : 3}%`;
+          bar.style.animationDelay = `${index * 80}ms`;
+          bar.setAttribute('aria-hidden', 'true');
+          track.append(bar);
+          column.append(node('div', 'bar-value', formatMoney(value)), track, node('div', 'bar-label', row.month));
+          chart.append(column);
+        });
+      }
+
+      function renderHotels(rows) {
+        const list = document.getElementById('hotel-ranking');
+        list.replaceChildren();
+        if (!rows.length) {
+          list.append(node('p', 'chart-empty', 'Ainda não há hotéis para mostrar.'));
+          return;
+        }
+
+        rows.slice(0, 5).forEach((hotel, index) => {
+          const row = node('div', 'hotel-row');
+          const info = node('div', 'hotel-info');
+          info.append(node('div', 'hotel-name', hotel.hotel_name), node('div', 'hotel-sub', `${hotel.room_nights} noites · ${hotel.hotel_id}`));
+          row.append(node('div', 'hotel-rank', String(index + 1)), info, node('div', 'hotel-amount', formatMoney(hotel.total_brl)));
+          list.append(row);
+        });
+      }
+
+      function renderTables(report) {
+        const monthBody = document.getElementById('by-month');
+        monthBody.replaceChildren();
+        report.by_month.forEach(row => {
+          const tr = document.createElement('tr');
+          [row.month, row.reservations, row.room_nights].forEach(value => tr.append(node('td', '', value)));
+          tr.append(node('td', 'money', formatMoney(row.total_brl)));
+          monthBody.append(tr);
+        });
+
+        const hotelBody = document.getElementById('top-hotels');
+        hotelBody.replaceChildren();
+        report.top_hotels.forEach(row => {
+          const tr = document.createElement('tr');
+          const idCell = document.createElement('td');
+          idCell.append(node('span', 'hotel-id', row.hotel_id));
+          tr.append(idCell, node('td', '', row.hotel_name), node('td', '', row.room_nights), node('td', 'money', formatMoney(row.total_brl)));
+          hotelBody.append(tr);
+        });
+      }
+
+      async function loadReport() {
+        let report = sampleReport;
+        try {
+          const response = await fetch('output/report.json');
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          report = await response.json();
+        } catch (error) {
+          const notice = document.getElementById('load-notice');
+          notice.textContent = 'Não foi possível ler output/report.json. Exibindo a amostra; gere o relatório e abra o dashboard por um servidor local para carregar seus dados.';
+          notice.style.display = 'block';
+          console.info('Usando amostra de validação.', error);
+        }
+
+        const months = Array.isArray(report.by_month) ? report.by_month : [];
+        const hotels = Array.isArray(report.top_hotels) ? report.top_hotels : [];
+        const summary = report.summary || sampleReport.summary;
+        renderSummary(summary);
+        renderMonthlyChart(months);
+        renderHotels(hotels);
+        renderTables({ by_month: months, top_hotels: hotels });
+
+        document.getElementById('hero-reservations').textContent = summary.total_reservations;
+        document.getElementById('hero-nights').textContent = summary.total_room_nights;
+        const timestamp = report.generated_at ? new Date(report.generated_at) : null;
+        document.getElementById('generated-at').textContent = timestamp && !Number.isNaN(timestamp.getTime())
+          ? `Relatório gerado ${timestamp.toLocaleString('pt-BR', { dateStyle: 'medium', timeStyle: 'short' })}`
+          : 'Relatório sem data informada';
+      }
+
+      loadReport();
+    </script>
+  </body>
+</html>
