@@ -1,5 +1,9 @@
 # Entrega do desafio Onfly
 
+## Demonstração
+
+[Acessar o dashboard publicado no GitHub Pages](https://ellsouza.github.io/onfly-desafio/).
+
 ## Defeitos corrigidos
 
 1. Cálculo de noites por quarto estava usando apenas o dia do mês em vez do intervalo total entre datas.
